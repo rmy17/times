@@ -23,24 +23,18 @@
  */
  
 
-/* core classes */
-import * as T from './core/index.js';
 
-/* io/loadImage */
-import * as io from './io/loadImage';
+import {TIMES} from './TIMES';
 
-/* cpu/ */
-import * as cpu from './cpu/index.js';
-
-/* gpu/ */
-import * as gpu from './gpu/index.js';
-
+import Raster from './Raster';
+import Image from './Image';
+import Stack from './Stack';
+import Volume from './Volume';
+import Window from './Window';
+import View from './View';
 
 export {
-  T,
-  io,
-  cpu,
-  gpu
+  Raster,Image,Stack,Volume,Window,View
 };
 
 

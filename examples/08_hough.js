@@ -11,15 +11,16 @@ const loadAndProcess = (theFile,data) => {
     img.metadata.file.type = theFile.type || 'n/a';
     img.metadata.file.size = theFile.size || 'n/a';
     img.metadata.file.lastModified = new Date(theFile.lastModified).toLocaleDateString() || 'n/a';
+    console.log(img);
     // Do the processing
-    let win1 = new T.Window(theFile.name + ' - org');
-    win1.addView(cpu.view(img.getRaster()));
-    win1.addToDOM('workspace');
-    /*
-    let win2 = new T.Window(theFile.name);
-    win2.addView(T.pipe(T.fromABGRtoUint8(T.luminance),T.noise(25.0),T.view)(img.getRaster()));
-    win2.addToDOM('workspace');
-    */
+    let win = new T.Window(theFile.name + ' - org');
+    let workflow = cpu.pipe(cpu.toUint8(cpu.luminance),cpu.sobel3x3(cpu.BORDER_CLAMP_TO_EDGE),cpu.otsu,cpu.houghLines(360,240),cpu.view);
+    let view = workflow(img.getRaster());
+   // let peaks = workflow(img.getRaster());
+    // let view = cpu.viewWithLayer(cpu.drawHougLines(peaks))(img.getRaster());
+    win.addView(view);
+    win.addToDOM('workspace');
+
   });
 };
 
@@ -49,21 +50,4 @@ const handleFileSelect = (evt) => {
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
-
-// Check endianness
-// https://hacks.mozilla.org/2011/12/faster-canvas-pixel-manipulation-with-typed-arrays/
-let buf = new ArrayBuffer(16);
-let buf8 = new Uint8ClampedArray(buf);
-let data = new Uint32Array(buf);
-// Determine whether Uint32 is little- or big-endian.
-data[0] = 0x0a0b0c0d;
-console.log(buf);
-console.log(buf8);
-console.log(data);
-let isLittleEndian = true;
-if (buf[0] === 0x0a && buf[1] === 0x0b && buf[2] === 0x0c &&
-  buf[3] === 0x0d) {
-  isLittleEndian = false;
-}
-console.log(isLittleEndian);
 

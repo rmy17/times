@@ -21,26 +21,27 @@
  * Authors:
  * Jean-Christophe Taveau
  */
+
+'use script';
+
+/**
+ * Functions used to render vectorial data in a HTML5 web page
+ * @module renderVector
+ */
  
-
-/* core classes */
-import * as T from './core/index.js';
-
-/* io/loadImage */
-import * as io from './io/loadImage';
-
-/* cpu/ */
-import * as cpu from './cpu/index.js';
-
-/* gpu/ */
-import * as gpu from './gpu/index.js';
-
-
-export {
-  T,
-  io,
-  cpu,
-  gpu
+/**
+ * Display Vectorial Data
+ *
+ * @param {TWindow} win - Window used to display the image in the HTML5 page
+ * @param {TImage} uint8 - Image containing uint8 pixels data
+ * @param {boolean} copy - Useless. Just here for compatibility with other process/render functions.
+ *
+ * @author Jean-Christophe Taveau
+ */
+const renderVector = (win) => (obj,copy=true) => {
+  console.log('renderVector');
 };
 
+// Exports
+export {renderVector}; 
 

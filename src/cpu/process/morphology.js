@@ -21,26 +21,20 @@
  * Authors:
  * Jean-Christophe Taveau
  */
- 
 
-/* core classes */
-import * as T from './core/index.js';
+'use strict';
 
-/* io/loadImage */
-import * as io from './io/loadImage';
-
-/* cpu/ */
-import * as cpu from './cpu/index.js';
-
-/* gpu/ */
-import * as gpu from './gpu/index.js';
-
-
-export {
-  T,
-  io,
-  cpu,
-  gpu
-};
-
+/**
+ * Description: TODO
+ *
+ * @param {type} <name> - <Description>
+ * @return {type} - <Description>
+ *
+ * @author TODO
+ */
+const erode = function (img,copy=true) {
+  let ouput =  TRaster.from(img,copy);
+  // TODO
+  return output;
+}
 
